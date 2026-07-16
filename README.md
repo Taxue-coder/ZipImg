@@ -1,5 +1,7 @@
 # ZipImg public deployment mirror
 
+Online: [http://43.242.200.67:4174/zh](http://43.242.200.67:4174/zh)
+
 该项目基于 `https://zippic.cn/zh` 的公开客户端构建产物，已重新命名为 ZipImg，并替换品牌视觉、主题配色、联系方式和页脚内容。
 
 博客模块已禁用，所有 `/blog` 路径返回 `404`。
