@@ -1,0 +1,51 @@
+:root {
+  --background: #f2f7f5 !important;
+  --main: rgb(87 214 194 / var(--tw-bg-opacity, 1)) !important;
+  --secondary-background: #ffffff !important;
+  --card: #ffffff !important;
+}
+
+html,
+body {
+  background-color: #f2f7f5 !important;
+}
+
+header,
+footer {
+  background-color: #ffffff !important;
+}
+
+.bg-main {
+  background-color: #57d6c2 !important;
+}
+
+.hover\:bg-main\/90:hover {
+  background-color: #43c2ae !important;
+}
+
+.text-main-foreground {
+  color: #102b28 !important;
+}
+
+button.bg-main,
+a.bg-main {
+  box-shadow: 4px 4px 0 #17201f !important;
+}
+
+footer.zipimg-footer > div > div {
+  justify-content: flex-end !important;
+}
+
+footer .flex.gap-6 {
+  display: none !important;
+}
+
+header a[href*="/blog"] {
+  display: none !important;
+}
+
+@media (max-width: 767px) {
+  footer.zipimg-footer > div > div {
+    align-items: flex-start !important;
+  }
+}

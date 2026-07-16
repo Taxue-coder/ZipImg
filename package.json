@@ -1,0 +1,16 @@
+{
+  "name": "zipimg",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node scripts/mirror-server.mjs",
+    "mirror": "node scripts/mirror-server.mjs",
+    "crawl": "node scripts/crawl-site.mjs",
+    "brand": "python scripts/generate_brand_assets.py && node scripts/customize-site.mjs",
+    "verify": "node scripts/verify-mirror.mjs",
+    "verify:brand": "node scripts/verify-brand.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.61.1"
+  }
+}
