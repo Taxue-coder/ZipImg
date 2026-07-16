@@ -9,7 +9,8 @@ const host = '127.0.0.1';
 const root = path.resolve('site-source');
 const pageOrigin = 'https://zippic.cn';
 const assetOrigin = 'https://assets.zippic.cn';
-const localOrigin = `http://${host}:${port}`;
+const localOrigin = process.env.PUBLIC_ORIGIN || `http://${host}:${port}`;
+const legacyLocalOrigin = 'http://127.0.0.1:4174';
 const textTypes = ['text/', 'javascript', 'json', 'xml', 'svg'];
 
 function isAssetPath(pathname) {
@@ -43,6 +44,8 @@ function cachePathFor(url, contentType = '') {
 
 function rewriteText(text) {
   return text
+    .replaceAll(legacyLocalOrigin, localOrigin)
+    .replaceAll(legacyLocalOrigin.replaceAll('/', '\\/'), localOrigin.replaceAll('/', '\\/'))
     .replaceAll(assetOrigin, `${localOrigin}/__assets`)
     .replaceAll('https:\\/\\/assets.zippic.cn', `${localOrigin.replaceAll('/', '\\/')}\\/__assets`)
     .replaceAll(pageOrigin, localOrigin)
@@ -84,7 +87,10 @@ async function proxy(req, res) {
   if (method === 'GET' || method === 'HEAD') {
     const cached = await getCached(target);
     if (cached) {
-      const payload = await readFile(cached.file);
+      const cachedPayload = await readFile(cached.file);
+      const payload = textTypes.some(type => cached.metadata.contentType.includes(type))
+        ? Buffer.from(rewriteText(cachedPayload.toString('utf8')))
+        : cachedPayload;
       return send(res, cached.metadata.status, cached.metadata.contentType, payload, method === 'HEAD');
     }
   }
