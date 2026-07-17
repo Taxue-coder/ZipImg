@@ -1,4 +1,4 @@
-# ZipImg public deployment mirror
+# ZipImg
 
 Online: [http://43.242.200.67:4174/zh](http://43.242.200.67:4174/zh)
 
